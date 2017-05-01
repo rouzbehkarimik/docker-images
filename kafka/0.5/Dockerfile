@@ -40,9 +40,12 @@ COPY ./log4j.properties $KAFKA_HOME/config/log4j.properties
 RUN chown -R kafka $KAFKA_HOME && \
     chgrp -R kafka $KAFKA_HOME
 USER kafka
-
+USER root
+RUN apt-get update && apt-get install -y \
+  vim
 # Set the working directory to the Kafka home directory
 WORKDIR $KAFKA_HOME
+
 
 #
 # Expose the ports and set up volumes for the data and logs directories
